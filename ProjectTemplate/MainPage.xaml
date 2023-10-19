@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectTemplate.MainPage"
+             xmlns:dg="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
+             xmlns:ViewModel ="clr-namespace:ProjectTemplate.ViewModel"
+             x:DataType="ViewModel:MainPageViewModel"
+             >
+
+    <Grid>
+        <!--Row Defs-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+        <!--Col Defs-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <!--Heading 1 LEFT-->
+        <Label TextColor="White" Text="Employee Detail" Grid.Column="0" Grid.Row="0" Padding="10" FontSize="Medium"/>
+        
+        <!--Data Grid LEFT-->
+        <dg:DataGrid Grid.Column="0" Grid.Row="1" x:Name="PersonDataGrid" ItemsSource="{Binding Employees}" RowHeight="70" HeaderHeight="50" BorderColor="DarkGrey" 
+             HeaderBackground="LightSeaGreen" ItemSelected="PersonDataGrid_ItemSelected">
+            <dg:DataGrid.Columns>
+                <dg:DataGridColumn Title="Id" PropertyName="employeeID" Width="40">
+                    <dg:DataGridColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentView>
+                                <Grid>
+                                    <Label Text="{Binding ., FallbackValue='id'}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
+                                </Grid>
+                            </ContentView>
+                        </DataTemplate>
+                    </dg:DataGridColumn.CellTemplate>
+                </dg:DataGridColumn>
+                <dg:DataGridColumn Title="Fist Name" PropertyName="firstName" >
+                    <dg:DataGridColumn.CellTemplate>
+                        <DataTemplate >
+                            <ContentView>
+                                <Label Text="{Binding ., FallbackValue='Fist Name'}" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center"/>
+                            </ContentView>
+                        </DataTemplate>
+                    </dg:DataGridColumn.CellTemplate>
+                </dg:DataGridColumn>
+                <dg:DataGridColumn Title="Last Name" PropertyName="lastName" >
+                    <dg:DataGridColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentView>
+                                <Label Text="{Binding ., FallbackValue='Last Name'}" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center"/>
+                            </ContentView>
+                        </DataTemplate>
+                    </dg:DataGridColumn.CellTemplate>
+                </dg:DataGridColumn>
+                <dg:DataGridColumn Title="Employee Type" PropertyName="typeEmployee">
+                    <dg:DataGridColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentView>
+                                <Grid>
+                                    <Label Text="{Binding ., FallbackValue='typeEmp'}" FontAttributes="Bold" TextColor="Black"/>
+                                </Grid>
+                            </ContentView>
+                        </DataTemplate>
+                    </dg:DataGridColumn.CellTemplate>
+                </dg:DataGridColumn>
+            </dg:DataGrid.Columns>
+            <dg:DataGrid.RowsBackgroundColorPalette>
+                <dg:PaletteCollection>
+                    <Color>white</Color>
+                    <Color>white</Color>
+                </dg:PaletteCollection>
+            </dg:DataGrid.RowsBackgroundColorPalette>
+        </dg:DataGrid>
+        
+        <!--Entry for Hrs LEFT-->
+        <HorizontalStackLayout Grid.Column="0" Grid.Row="2">
+            <Label Text="Hours Worked (hrs)"/>
+            <Entry Placeholder="0" BackgroundColor="White" TextColor="Black"/>
+        </HorizontalStackLayout>
+
+        <!--Calc Btn LEFT-->
+        <Button Text="Calculate"
+                Padding="20"
+                Grid.Column="0"
+                Grid.Row="3"/>
+        
+        <!--Heading 2-->
+        <Label TextColor="White" Text="Payment Summary" Grid.Column="1" Grid.Row="0" Padding="10" FontSize="Medium"/>
+           
+        <!--Payslip Summary-->
+        <VerticalStackLayout Grid.Column="1" Grid.Row="1" Padding="10">
+            <Label Text="Id Placeholder"/>
+            <Label Text="Name Placeholder"/>
+            <Label Text="Role Placeholder"/>
+            <Label Text="TaxThreshold Y/N Placeholder"/>
+            <Label Text="HoursWorked Placeholder"/>
+            <Label Text="Hrly Rate Placeholder"/>
+            <Label Text="GrossPay Placeholder"/>
+            <Label Text="Tax Placeholder"/>
+            <Label Text="NetPay Placeholder"/>
+            <Label Text="SuperAnnuation Placeholder"/>
+            <Label Text="Date Placeholder"/>
+            <Label Text="Time Placeholder"/>
+        </VerticalStackLayout>
+
+        <!--Placeholder for saved file feedback-->
+        <HorizontalStackLayout Grid.Column="1" Grid.Row="2" Padding="10">
+            <Label Text="Records saved yes/no placeholder"/>
+        </HorizontalStackLayout>
+
+        <!--Save Payslip Btn-->
+        <Button Text="Save" 
+                Padding="20"
+                Grid.Column="1"
+                Grid.Row="3"
+                />
+
+    </Grid>
+
+</ContentPage>
